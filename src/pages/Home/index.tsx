@@ -1,101 +1,94 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState, useCallback } from 'react';
+import { FiPlay, FiArrowRight, FiCopy } from 'react-icons/fi';
 
-import Logo from '../../components/Logo';
+import Sidebar from '../../components/Sidebar';
 
-import Headline from '../../assets/headline.webp';
-import Profile from '../../assets/profile.webp';
-import Gamification from '../../assets/gamification.webp';
-import Community from '../../assets/community.webp';
+import ImageTeste from '../../assets/teste.png';
 
 import {
   Container,
-  Header,
   Content,
-  Background,
-  ContentTwo,
-  Info,
-  InfoImg,
-  InfoText,
+  SectionVenda,
+  ContentAfter,
+  ContentRight,
 } from './styles';
 
 const Home: React.FC = () => {
+  const [generateLink, setGenerateLink] = useState('');
+
+  const handleAddLink = useCallback(() => {
+    setGenerateLink(`http://teste.${String(Date.now())}`);
+  }, []);
+
   return (
     <Container>
-      <Header>
-        <div>
-          <div>
-            <Logo />
-          </div>
-          <Link to="/manifesto">Manifesto</Link>
-        </div>
-
-        <Link to="/login">Entrar</Link>
-      </Header>
+      <Sidebar />
       <Content>
-        <h2>
-          Evolua rápido como a tecnologia<b>.</b>
-        </h2>
         <div>
-          <p>
-            Junte-se a milhares de devs e acelere na direção dos seus objetivos.
-          </p>
-          <Link to="/register">EMBARCAR NO FOGUETE</Link>
+          <img src={ImageTeste} alt="Imagem de teste" />
+          <div>
+            <div>
+              <FiPlay size={25} />
+              <h1>Assista agora</h1>
+            </div>
+            <FiArrowRight size={25} />
+          </div>
         </div>
-      </Content>
-      <Background>
-        <img src={Headline} alt="headline" />
-      </Background>
-      <ContentTwo>
-        <h2>Empresas que confiam no nosso trabalho</h2>
-        <div>
-          <p>GOBO</p>
-          <p>ZUP</p>
-          <p>NEON</p>
-          <p>VanHack</p>
-          <p>Zenvia</p>
-        </div>
-        <Info>
-          <InfoImg>
-            <img src={Profile} alt="Profile" />
-          </InfoImg>
-          <InfoText>
-            <div />
-            <h2>Conexão é a chave para as maiores oportunidades</h2>
-            <p>
-              Uma comunidade incrível e todo o ecossistema de tecnologia na
-              mesma plataforma.
-            </p>
-          </InfoText>
-        </Info>
-        <Info>
-          <InfoText>
-            <div />
-            <h2>Conquiste novas habilidades e seja reconhecido</h2>
-            <p>
-              Uma jornada de aprendizado contínuo, desafios e recompensas que
-              vão te levar para o próximo nível.
-            </p>
-          </InfoText>
-          <InfoImg>
-            <img src={Gamification} alt="Profile" />
-          </InfoImg>
-        </Info>
+        <h2>Preparando seu link de venda</h2>
+        <SectionVenda>
+          <ContentAfter>
+            <div>
+              <input placeholder="Nome do Aluno" />
+              <input className="w100" placeholder="Nome do Aluno" />
+              <select>
+                <option value="">Gestão Comercial</option>
+                <option value="">Gestão Comercial</option>
+                <option value="">Gestão Comercial</option>
+              </select>
+              <input className="w100" placeholder="Nome do Aluno" />
+            </div>
+            <div>
+              <h1>Gestão comercial</h1>
+              <p>
+                Pronto para encarar o mercado competitivo? <br />
+                Vem logo para a Gestão Comercial!
+              </p>
+            </div>
 
-        <Info>
-          <InfoImg>
-            <img src={Community} alt="Profile" />
-          </InfoImg>
-          <InfoText>
-            <div />
-            <h2>Devs melhores, aplicações melhores, um mundo melhor</h2>
+            <div>
+              <button onClick={handleAddLink} type="button">
+                Gerar Link
+              </button>
+              <div>
+                <input disabled placeholder={generateLink} />
+                <FiCopy />
+              </div>
+            </div>
             <p>
-              Uma experiência com propósito para impulsionar sua carreira e
-              transformar o mundo.
+              Este é seu link exclusivo. Envie para seu cliente para fechar sua
+              venda. <br /> <br />
+              Somente as assinatuas realizadas por este link serão consideradas
+              na sua conta
             </p>
-          </InfoText>
-        </Info>
-      </ContentTwo>
+          </ContentAfter>
+          <ContentRight>
+            <div>
+              <h2>Resultado</h2>
+              <select>
+                <option>09.09 a 15.09</option>
+                <option>09.09 a 15.09</option>
+                <option>09.09 a 15.09</option>
+              </select>
+            </div>
+            <h2>
+              <span>20</span> Vendedores
+            </h2>
+            <h2>
+              <span>37</span> Vendas
+            </h2>
+          </ContentRight>
+        </SectionVenda>
+      </Content>
     </Container>
   );
 };
